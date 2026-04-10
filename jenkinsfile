@@ -1,0 +1,21 @@
+pipeline {
+    agent { label 'docker' }
+    
+    stages {
+        stage('Check the docker cli') {
+            steps {
+            sh "docker --version"
+            sh "docker ps -a"
+            sh "docker-compose --version"
+            }
+        }
+
+        stage('Docker-Build') {
+            steps {
+                echo "Docker Build Step here..."
+                sh "docker build . -t pythonapp:v1"
+            }
+        }
+    }
+
+}
