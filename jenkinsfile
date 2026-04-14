@@ -57,6 +57,8 @@ pipeline {
             steps {
                 sh """
                 kubectl apply -f py-redis-configmap
+                kubectl rollout restart deployment py-deploy-cm
+                kubectl rollout status deployment py-deploy-cm
                 """
             }
         }
